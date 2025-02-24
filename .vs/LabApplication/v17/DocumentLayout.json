@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\dendo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041C\u0406\u0422\\\u041C\u0406\u0422-31\\\u0425\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\LabApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14D842EE-3F3A-4B77-A1AC-60DBA6912A7A}|LabApplication\\LabApplication.csproj|c:\\users\\dendo\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043C\u0456\u0442\\\u043C\u0456\u0442-31\\\u0445\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\labapplication\\labapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14D842EE-3F3A-4B77-A1AC-60DBA6912A7A}|LabApplication\\LabApplication.csproj|solutionrelative:labapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dendo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041C\u0406\u0422\\\u041C\u0406\u0422-31\\\u0425\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\LabApplication\\\u0417\u0412\u0406\u0422.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:\u0417\u0412\u0406\u0422.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,19 +27,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\dendo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041C\u0406\u0422\\\u041C\u0406\u0422-31\\\u0425\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\LabApplication\\LabApplication\\Program.cs",
-              "RelativeDocumentMoniker": "LabApplication\\Program.cs",
-              "ToolTip": "C:\\Users\\dendo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041C\u0406\u0422\\\u041C\u0406\u0422-31\\\u0425\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\LabApplication\\LabApplication\\Program.cs",
-              "RelativeToolTip": "LabApplication\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-03T07:10:19.098Z",
+              "Title": "\u0417\u0412\u0406\u0422.md",
+              "DocumentMoniker": "C:\\Users\\dendo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041C\u0406\u0422\\\u041C\u0406\u0422-31\\\u0425\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\LabApplication\\\u0417\u0412\u0406\u0422.md",
+              "RelativeDocumentMoniker": "\u0417\u0412\u0406\u0422.md",
+              "ToolTip": "C:\\Users\\dendo\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041C\u0406\u0422\\\u041C\u0406\u0422-31\\\u0425\u043C\u0430\u0440\u043D\u0456 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\LabApplication\\\u0417\u0412\u0406\u0422.md",
+              "RelativeToolTip": "\u0417\u0412\u0406\u0422.md",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-02-24T07:40:58.197Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1592724677:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
             }
           ]
         }

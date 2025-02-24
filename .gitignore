@@ -1,2 +1,6 @@
 LabApplication/obj
 LabApplication/bin
+.vs/
+wwwroot
+obj
+bin
