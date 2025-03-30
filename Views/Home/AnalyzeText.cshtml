@@ -1,26 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Results of processing";
+﻿@model Azure.AI.TextAnalytics.LinkedEntityCollection
+
+@{
+    ViewBag.Title = "Entity Recognition Results";
 }
 
-@if (ViewData["Entities"] != null)
+<h2>Recognized Entities</h2>
+
+@if (Model.Any())
 {
-    <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+    <table class="table">
         <thead>
             <tr>
-                <th style="border: 1px solid black; padding: 8px;">Entity</th>
-                <th style="border: 1px solid black; padding: 8px;">Wikipedia Link</th>
+                <th>Text</th>
+                <th>URL</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in ViewData["Entities"] as List<dynamic>)
+            @foreach (var entity in Model)
             {
                 <tr>
-                    <td style="border: 1px solid black; padding: 8px;">@item.Name</td>
-                    <td style="border: 1px solid black; padding: 8px;">
-                        <a href="@item.Url" target="_blank">@item.Url</a>
-                    </td>
+                    <td>@entity.Name</td>
+                    <td><a href="@entity.Url" target="_blank">@entity.Url</a></td>
                 </tr>
             }
         </tbody>
     </table>
 }
+else
+{
+    <p>No entities found.</p>
+}
+

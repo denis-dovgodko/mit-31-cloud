@@ -2,11 +2,24 @@
     ViewData["Title"] = "Home page text processing";
 }
 
-<h2>Please, enter text for processing</h2>
+<section style="border: 2px solid #4CAF50; padding: 20px; margin-bottom: 20px;">
+    <h2 style="color: #4CAF50;">Text Analysis</h2>
+    <p>Enter the text you want to analyze below.</p>
+    <form method="post" asp-action="AnalyzeText">
+        <label for="textToAnalyze" style="font-weight: bold;">Enter text for analysis:</label><br>
+        <textarea id="textToAnalyze" name="userInput" rows="6" cols="50" required style="width: 100%; margin-bottom: 10px;"></textarea><br>
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Analyze</button>
+    </form>
+</section>
 
-<form method="post" asp-action="AnalyzeText">
-    <label for="userInput">Enter text:</label>
-    <textarea id="userInput" name="userInput" rows="6" cols="50" required></textarea>
-    <button type="submit">Analyze</button>
-</form>
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
 
+<section style="border: 2px solid #2196F3; padding: 20px;">
+    <h2 style="color: #2196F3;">Entity Recognition</h2>
+    <p>Enter the text you want to recognize entities in below.</p>
+    <form method="post" asp-action="RecognizeEntities">
+        <label for="textToRecognize" style="font-weight: bold;">Enter text for entity recognition:</label><br>
+        <textarea id="textToRecognize" name="userInput" rows="6" cols="50" required style="width: 100%; margin-bottom: 10px;"></textarea><br>
+        <button type="submit" style="background-color: #2196F3; color: white; padding: 10px 20px; border: none; cursor: pointer;">Recognize</button>
+    </form>
+</section>

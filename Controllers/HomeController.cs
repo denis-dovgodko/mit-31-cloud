@@ -47,28 +47,18 @@ namespace lab5.Controllers
             }
 
             var response = client.RecognizeLinkedEntities(userInput);
-
-            var entities = new List<dynamic>();
-
-            foreach (var entity in response.Value)
+            return View(response.Value);
+        }
+        [HttpPost]
+        public IActionResult RecognizeEntities(string userInput)
+        {
+            if (string.IsNullOrEmpty(userInput))
             {
-                var matches = new List<dynamic>();
-                foreach (var match in entity.Matches)
-                {
-                    matches.Add(new { Text = match.Text, Score = match.ConfidenceScore });
-                }
-
-                entities.Add(new
-                {
-                    Name = entity.Name,
-                    Url = entity.Url,
-                    DataSource = entity.DataSource,
-                    Matches = matches
-                });
+                return View();
             }
 
-            ViewData["Entities"] = entities;
-            return View();
+            var response = client.RecognizeEntities(userInput);
+            return View(response.Value);
         }
     }
 }
