@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Results of processing";
+}
+
+@if (ViewData["Entities"] != null)
+{
+    <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 8px;">Entity</th>
+                <th style="border: 1px solid black; padding: 8px;">Wikipedia Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewData["Entities"] as List<dynamic>)
+            {
+                <tr>
+                    <td style="border: 1px solid black; padding: 8px;">@item.Name</td>
+                    <td style="border: 1px solid black; padding: 8px;">
+                        <a href="@item.Url" target="_blank">@item.Url</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

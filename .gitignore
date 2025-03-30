@@ -1,6 +1,7 @@
 LabApplication/obj
 LabApplication/bin
 .vs
+.env
 **/bin
 **/obj
 **/wwwroot

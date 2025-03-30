@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home page text processing";
+}
+
+<h2>Please, enter text for processing</h2>
+
+<form method="post" asp-action="AnalyzeText">
+    <label for="userInput">Enter text:</label>
+    <textarea id="userInput" name="userInput" rows="6" cols="50" required></textarea>
+    <button type="submit">Analyze</button>
+</form>
+
