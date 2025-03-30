@@ -1,0 +1,45 @@
+﻿@model List<Azure.AI.TextAnalytics.AnalyzeHealthcareEntitiesResultCollection>
+
+@{
+    ViewBag.Title = "Entity Recognition Results";
+}
+
+<h2>Recognized Entities</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Category</th>
+                <th>ConfidenceScore:F2</th>
+                <th>Length</th>
+                <th>Offset</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Azure.AI.TextAnalytics.AnalyzeHealthcareEntitiesResultCollection entities in Model)
+            {
+                @foreach (Azure.AI.TextAnalytics.AnalyzeHealthcareEntitiesResult results in entities)
+                {
+                    @foreach (var entity in results.Entities)
+                    {
+                        <tr>
+                            <td>@entity.Text</td>
+                            <td>@entity.Category</td>
+                            <td>@entity.Length</td>
+                            <td>@entity.Offset</td>
+                            <td>@entity.NormalizedText</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No entities found.</p>
+}
+

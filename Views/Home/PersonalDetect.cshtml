@@ -1,0 +1,37 @@
+﻿@model Azure.AI.TextAnalytics.PiiEntityCollection
+
+@{
+    ViewBag.Title = "Personal information check results";
+}
+
+<h2>Personal info found: @Model.Count</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Category</th>
+                <th>SubCategory</th>
+                <th>ConfidenceScore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entity in Model)
+            {
+                <tr>
+                    <td>@entity.Text</td>
+                    <td>@entity.Category</td>
+                    <td>@(entity.SubCategory ?? "N/A")</td>
+                    <td>@entity.ConfidenceScore.ToString("F2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No entities found.</p>
+}
+

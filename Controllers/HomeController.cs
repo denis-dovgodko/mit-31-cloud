@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Azure.AI.TextAnalytics;
 using Microsoft.IdentityModel.Tokens;
+using Sprache;
 
 namespace lab5.Controllers
 {
@@ -59,6 +60,38 @@ namespace lab5.Controllers
 
             var response = client.RecognizeEntities(userInput);
             return View(response.Value);
+        }
+        [HttpPost]
+        public IActionResult PersonalDetect(string userInput)
+        {
+            if (string.IsNullOrEmpty(userInput))
+            {
+                return View();
+            }
+
+            var response = client.RecognizePiiEntities(userInput);
+            return View(response.Value);
+        }
+        [HttpPost]
+        async public Task<IActionResult> HealthcareEntities(string userInput)
+        {
+            if (string.IsNullOrEmpty(userInput))
+            {
+                return View();
+            }
+            List<string> batchInput = new List<string>()
+            {
+                userInput
+            };
+
+            var response = await client.StartAnalyzeHealthcareEntitiesAsync(batchInput);
+            await response.WaitForCompletionAsync();
+            List<AnalyzeHealthcareEntitiesResultCollection> data = new List<AnalyzeHealthcareEntitiesResultCollection>();
+            await foreach (AnalyzeHealthcareEntitiesResultCollection documentsInPage in response.Value)
+            {
+                data.Add(documentsInPage);
+            }
+            return View(data);
         }
     }
 }

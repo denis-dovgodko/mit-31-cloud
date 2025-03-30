@@ -23,3 +23,27 @@
         <button type="submit" style="background-color: #2196F3; color: white; padding: 10px 20px; border: none; cursor: pointer;">Recognize</button>
     </form>
 </section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+<section style="border: 2px solid #FF9800; padding: 20px;">
+    <h2 style="color: #FF9800;">Personal Information Detection</h2>
+    <p>Enter the text you want to check for personal information in below.</p>
+    <form method="post" asp-action="PersonalDetect">
+        <label for="textToRecognize" style="font-weight: bold;">Enter text for checking:</label><br>
+        <textarea id="textToRecognize" name="userInput" rows="6" cols="50" required style="width: 100%; margin-bottom: 10px;"></textarea><br>
+        <button type="submit" style="background-color: #FF9800; color: white; padding: 10px 20px; border: none; cursor: pointer;">Detect</button>
+    </form>
+</section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+<section style="border: 2px solid #F06292; padding: 20px;">
+    <h2 style="color: #F06292;">Healthcare Information Detection</h2>
+    <p>Enter the text you want to check for healthcare information in below.</p>
+    <form method="post" asp-action="HealthcareEntities">
+        <label for="textToRecognize" style="font-weight: bold;">Enter text for checking:</label><br>
+        <textarea id="textToRecognize" name="userInput" rows="6" cols="50" required style="width: 100%; margin-bottom: 10px;"></textarea><br>
+        <button type="submit" style="background-color: #F06292; color: white; padding: 10px 20px; border: none; cursor: pointer;">Detect</button>
+    </form>
+</section>
