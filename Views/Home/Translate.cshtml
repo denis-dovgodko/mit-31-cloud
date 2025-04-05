@@ -1,0 +1,37 @@
+﻿@model Azure.AI.Translation.Text.TranslatedTextItem
+
+@{
+    ViewBag.Title = "Translation";
+}
+
+<section style="max-width: 700px; margin: 40px auto; padding: 30px; border: 2px solid #4DB6AC; border-radius: 16px; background-color: #F1FAFB; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+
+    <h2 style="color: #00796B; font-size: 24px; margin-bottom: 10px;">
+        Original text detected as <strong>@Model?.DetectedLanguage?.Language?.ToUpper()</strong>
+    </h2>
+
+    <p style="margin-bottom: 20px; font-size: 16px; color: #555;">
+        Confidence score: <strong>@Model?.DetectedLanguage?.Confidence</strong>
+    </p>
+
+    @if (Model.Translations.Any())
+    {
+        <h3 style="color: #00796B; font-size: 20px;">
+            Translated to: <strong>@Model.Translations.FirstOrDefault().TargetLanguage?.ToUpper()</strong>
+        </h3>
+
+        <div style="margin-top: 20px; padding: 20px; background-color: #E0F7FA; border-left: 6px solid #4DB6AC; border-radius: 10px;">
+            <p style="font-size: 18px; color: #004D40; line-height: 1.5;">
+                @Model.Translations.FirstOrDefault()?.Text
+            </p>
+        </div>
+    }
+    else
+    {
+        <div style="margin-top: 20px; padding: 15px; background-color: #FFEBEE; border-left: 6px solid #EF5350; border-radius: 10px;">
+            <p style="color: #C62828; font-weight: bold;">No translations found.</p>
+        </div>
+    }
+</section>
+
+

@@ -47,3 +47,22 @@
         <button type="submit" style="background-color: #F06292; color: white; padding: 10px 20px; border: none; cursor: pointer;">Detect</button>
     </form>
 </section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+<section style="border: 2px solid #4DB6AC; padding: 20px;">
+    <h2 style="color: #4DB6AC;">Text Translation</h2>
+    <p>Enter the text you want to translate and choose the target language.</p>
+    <form method="post" asp-action="Translate">
+        <label for="textToTranslate" style="font-weight: bold;">Enter text for translation:</label><br>
+        <textarea id="textToTranslate" name="userInput" rows="6" cols="50" required style="width: 100%; margin-bottom: 10px;"></textarea><br>
+        <label for="language" style="font-weight: bold;">Select Target Language:</label><br>
+        <select id="language" name="targetLanguage" style="width: 100%; margin-bottom: 10px;" required>
+            @foreach (var lang in ViewBag.Languages as List<SelectListItem>)
+            {
+                <option value="@lang.Value">@lang.Text</option>
+            }
+        </select><br>
+        <button type="submit" style="background-color: #4DB6AC; color: white; padding: 10px 20px; border: none; cursor: pointer;">Translate</button>
+    </form>
+</section>
