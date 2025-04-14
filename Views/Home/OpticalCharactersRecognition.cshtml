@@ -1,0 +1,44 @@
+﻿@model Azure.AI.Vision.ImageAnalysis.ImageAnalysisResult
+
+@{
+    ViewBag.Title = "Optical Characters Recognition";
+    var image = ViewBag.OriginImage as byte[];
+}
+
+<section style="max-width: 700px; margin: 40px auto; padding: 30px; border: 2px solid #4DB6AC; border-radius: 16px; background-color: #F1FAFB; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+
+
+
+    @if (true)
+    {
+        @if (image != null && image.Length > 0)
+        {
+            <img src="data:image/png;base64,@Convert.ToBase64String(image)" alt="Uploaded Image" width="600px"/>
+        }
+        <h4>Recognized text:</h4>
+        foreach (var block in Model.Read.Blocks)
+        {
+            foreach (var line in block.Lines)
+            {
+                <p><strong>@line.Text</strong></p>
+            }
+        }
+        <h4>Debug analytics</h4>
+        foreach (var line in Model.Read.Blocks.SelectMany(block => block.Lines))
+        {
+            <p>Line: @line.Text, Bounding Polygon: @string.Join(" ", line.BoundingPolygon)</p>
+            foreach (Azure.AI.Vision.ImageAnalysis.DetectedTextWord word in line.Words)
+            {
+                <p>Word: @word.Text, Confidence @word.Confidence.ToString("#.####"), Bounding Polygon: @string.Join(" ", word.BoundingPolygon)</p>
+            }
+        }
+    }
+    else
+    {
+        <div style="margin-top: 20px; padding: 15px; background-color: #FFEBEE; border-left: 6px solid #EF5350; border-radius: 10px;">
+            <p style="color: #C62828; font-weight: bold;">No translations found.</p>
+        </div>
+    }
+</section>
+
+

@@ -66,3 +66,52 @@
         <button type="submit" style="background-color: #4DB6AC; color: white; padding: 10px 20px; border: none; cursor: pointer;">Translate</button>
     </form>
 </section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+<section style="border: 2px solid #FF7043; padding: 20px;">
+    <h2 style="color: #FF7043;">Optical Characters Recognition</h2>
+    <p>Upload the image you want to recognize</p>
+    <form method="post" asp-action="OpticalCharactersRecognition" enctype="multipart/form-data">
+        <label for="image" style="font-weight: bold;">Upload image for recognition:</label><br>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png" required /><br /><br />
+        <button type="submit" style="background-color: #FF7043; color: white; padding: 10px 20px; border: none; cursor: pointer;">Recognize</button>
+    </form>
+</section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+<section style="border: 2px solid #A5D6A7; padding: 20px;">
+    <h2 style="color: #A5D6A7;">Image Analysis</h2>
+    <p>Upload the image you want to recognize</p>
+    <form method="post" asp-action="ImageAnalysis" enctype="multipart/form-data">
+        <label for="image" style="font-weight: bold;">Upload image to analys:</label><br>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png" required /><br /><br />
+        <button type="submit" style="background-color: #A5D6A7; color: white; padding: 10px 20px; border: none; cursor: pointer;">Recognize</button>
+    </form>
+</section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+<section style="border: 2px solid #D1C4E9; padding: 20px;">
+    <h2 style="color: #D1C4E9;">Face service</h2>
+    <p>Upload the image you want to recognize</p>
+    <form method="post" asp-action="FaceService" enctype="multipart/form-data">
+        <label for="image" style="font-weight: bold;">Upload image for face detection:</label><br>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png" required /><br /><br />
+        <button type="submit" style="background-color: #D1C4E9; color: white; padding: 10px 20px; border: none; cursor: pointer;">Send</button>
+    </form>
+</section>
+
+<hr style="border: 1px solid #ddd; margin: 30px 0;">
+<section style="border: 2px solid #E9D1C4; padding: 20px;">
+    <h2 style="color: #E9D1C4;">Additional task: code recognize</h2>
+    <p>Upload the image where you want to extract code</p>
+    <form method="post" asp-action="Code" enctype="multipart/form-data">
+        <label for="image" style="font-weight: bold;">Upload image for recognition:</label><br>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png" required /><br /><br />
+        <button type="submit" style="background-color: #E9D1C4; color: white; padding: 10px 20px; border: none; cursor: pointer;">Recognize</button>
+    </form>
+</section>
+
+

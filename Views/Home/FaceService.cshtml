@@ -1,0 +1,61 @@
+﻿@using Azure.AI.Vision.Face
+@using System.Drawing
+@model IReadOnlyList<FaceDetectionResult>
+
+@{
+    ViewBag.Title = "Face detection";
+    var image = ViewBag.OriginImage as byte[];
+}
+
+
+<section style="max-width: 700px; margin: 40px auto; padding: 30px; border: 2px solid #4DB6AC; border-radius: 16px; background-color: #F1FAFB; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+
+    @if (image != null && image.Length > 0)
+    {
+        <img src="data:image/png;base64,@Convert.ToBase64String(image)" alt="Uploaded Image" width="600px" />
+    }
+    @if (Model.Any())
+    {
+        @foreach (FaceDetectionResult face in Model)
+        {
+            var landmarks = face.FaceLandmarks;
+            var upperLipBottom = landmarks.UpperLipBottom;
+            var underLipTop = landmarks.UnderLipTop;
+
+            var centerOfMouth = new Point(
+                (int)((upperLipBottom.X + underLipTop.X) / 2),
+                (int)((upperLipBottom.Y + underLipTop.Y) / 2));
+
+            var eyeLeftInner = landmarks.EyeLeftInner;
+            var eyeRightInner = landmarks.EyeRightInner;
+            var centerOfTwoEyes = new Point(
+                (int)((eyeLeftInner.X + eyeRightInner.X) / 2),
+                (int)((eyeLeftInner.Y + eyeRightInner.Y) / 2));
+            <ul>
+                <li><strong>Nose Tip:</strong> X = @landmarks.NoseTip.X, Y = @landmarks.NoseTip.Y</li>
+                <li><strong>Left Pupil:</strong> X = @landmarks.PupilLeft.X, Y = @landmarks.PupilLeft.Y</li>
+                <li><strong>Right Pupil:</strong> X = @landmarks.PupilRight.X, Y = @landmarks.PupilRight.Y</li>
+                <li><strong>Center of Mouth:</strong> X = @centerOfMouth.X, Y = @centerOfMouth.Y</li>
+                <li><strong>Center Between Eyes:</strong> X = @centerOfTwoEyes.X, Y = @centerOfTwoEyes.Y</li>
+                @foreach (var accesory in face.FaceAttributes.Accessories)
+                {
+                    <li><strong>@accesory.Type : @accesory.Confidence</li>
+                }
+                <li>Exposure scale @face.FaceAttributes.Exposure.Value</li>
+                <li>
+                    @(face.FaceAttributes.Glasses.HasValue
+                        ? @face.FaceAttributes.Glasses.Value
+                        : "-")
+                </li>
+                <li>Roll: @face.FaceAttributes.HeadPose.Roll</li>
+                <li>Yaw: @face.FaceAttributes.HeadPose.Yaw</li>
+                <li>Pitch: @face.FaceAttributes.HeadPose.Pitch</li>
+
+
+                <li>Coordinates: @face.FaceRectangle.Left, @face.FaceRectangle.Top</li>
+                <li>Dimensions: @face.FaceRectangle.Width, @face.FaceRectangle.Height </li>
+            </ul>
+        }
+    }
+
+</section>
