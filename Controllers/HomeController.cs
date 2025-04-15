@@ -13,6 +13,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Text;
+using Microsoft.Identity.Client;
 
 namespace lab5.Controllers
 {
@@ -26,6 +27,10 @@ namespace lab5.Controllers
         private static readonly string region = Environment.GetEnvironmentVariable("TRANSLATOR_REGION");
         private static readonly string visionKey = Environment.GetEnvironmentVariable("VISION_KEY");
         private static readonly string faceKey = Environment.GetEnvironmentVariable("FACE_KEY");
+        private readonly string TenantId = Environment.GetEnvironmentVariable("TENANT_ID");
+        private readonly string ClientId = Environment.GetEnvironmentVariable("CLIENT_ID");
+        private readonly string ClientSecret = Environment.GetEnvironmentVariable("CLIENT_SECRET");
+        private readonly string Subdomain = Environment.GetEnvironmentVariable("SUBDOMAIN");
         private static readonly string translatorEndpoint = "https://api.cognitive.microsofttranslator.com";
         private static readonly string url = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/";
         private static readonly string LargePersonGroupId = Guid.NewGuid().ToString();
@@ -41,9 +46,47 @@ namespace lab5.Controllers
         private static readonly ImageAnalysisClient visionClient = new ImageAnalysisClient(visionEndpoint, visionCredentials);
         private static readonly FaceClient faceClient = new FaceClient(faceEndpoint, faceCredentials);
 
-        public HomeController(ILogger<HomeController> logger)
+        private IConfidentialClientApplication _confidentialClientApplication;
+        private IConfidentialClientApplication ConfidentialClientApplication
+        {
+            get
+            {
+                if (_confidentialClientApplication == null)
+                {
+                    _confidentialClientApplication = ConfidentialClientApplicationBuilder.Create(ClientId)
+                    .WithClientSecret(ClientSecret)
+                    .WithAuthority($"https://login.windows.net/{TenantId}")
+                    .Build();
+                }
+
+                return _confidentialClientApplication;
+            }
+        }
+
+
+        public HomeController(ILogger<HomeController> logger, Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
             _logger = logger;
+
+            if (string.IsNullOrWhiteSpace(TenantId))
+            {
+                throw new ArgumentNullException("TenantId is null! Did you add that info to secrets.json?");
+            }
+
+            if (string.IsNullOrWhiteSpace(ClientId))
+            {
+                throw new ArgumentNullException("ClientId is null! Did you add that info to secrets.json?");
+            }
+
+            if (string.IsNullOrWhiteSpace(ClientSecret))
+            {
+                throw new ArgumentNullException("ClientSecret is null! Did you add that info to secrets.json?");
+            }
+
+            if (string.IsNullOrWhiteSpace(Subdomain))
+            {
+                throw new ArgumentNullException("Subdomain is null! Did you add that info to secrets.json?");
+            }
         }
 
         public async Task<IActionResult> Index()
@@ -205,7 +248,7 @@ namespace lab5.Controllers
             using var memoryStream = new MemoryStream();
             await image.CopyToAsync(memoryStream);
             BinaryData data = BinaryData.FromBytes(memoryStream.ToArray());
-            var response = await faceClient.DetectAsync(data, FaceDetectionModel.Detection01, FaceRecognitionModel.Recognition04, returnFaceId: false, 
+            var response = await faceClient.DetectAsync(data, FaceDetectionModel.Detection01, FaceRecognitionModel.Recognition04, returnFaceId: false,
                 returnFaceAttributes: requiredFaceAttributes, returnFaceLandmarks: true);
             IReadOnlyList<FaceDetectionResult> faces = response.Value;
             ViewBag.OriginImage = memoryStream.ToArray();
@@ -238,6 +281,34 @@ namespace lab5.Controllers
             var textBytes = Encoding.UTF8.GetBytes(sb.ToString());
 
             return File(textBytes, "text/plain", fileName);
+        }
+        public async Task<string> GetTokenAsync()
+        {
+            const string resource = "https://cognitiveservices.azure.com/";
+
+            var authResult = await ConfidentialClientApplication.AcquireTokenForClient(
+                new[] { $"{resource}/.default" })
+                .ExecuteAsync()
+                .ConfigureAwait(false);
+
+            return authResult.AccessToken;
+        }
+
+        [HttpGet]
+        async public Task<JsonResult> GetTokenAndSubdomain()
+        {
+            try
+            {
+                string tokenResult = await GetTokenAsync();
+
+                return new JsonResult(new { token = tokenResult, subdomain = Subdomain });
+            }
+            catch (Exception e)
+            {
+                string message = "Unable to acquire Microsoft Entra token. Check the console for more information.";
+                Debug.WriteLine(message, e);
+                return new JsonResult(new { error = message });
+            }
         }
     }
 }
